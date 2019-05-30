@@ -18,6 +18,7 @@ public class Main {
         Quiz quiz = service.getQuiz();
         
         //передать список вопросов в класс, обеспечивающий взаимодействие с пользователем
-        quiz.getQuestions();
+        new Console().run(quiz.getQuestions());
+        
     }
 }
