@@ -2,13 +2,22 @@ package ru.otus.homework01;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import ru.otus.homework01.domain.Quiz;
+import ru.otus.homework01.service.QuizService;
+
+
+
 
 public class Main {
 
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
-        /*PersonService service = context.getBean(PersonService.class);
-        Person ivan = service.getByName("Ivan");
-        System.out.println("name: " + ivan.getName() + " age: " + ivan.getAge());*/
+        
+        //получить объект, содержащий загруженные из файла вопросы
+        QuizService service = context.getBean(QuizService.class);
+        Quiz quiz = service.getQuiz();
+        
+        //передать список вопросов в класс, обеспечивающий взаимодействие с пользователем
+        quiz.getQuestions();
     }
 }
