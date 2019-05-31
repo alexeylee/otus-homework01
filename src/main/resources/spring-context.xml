@@ -4,6 +4,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<bean id="interactService" class="ru.otus.homework01.service.InteractServiceImpl">
+		<constructor-arg name="loginService" ref="loginService"/>
+		<constructor-arg name="quizeService" ref="quizService"/>
+		<constructor-arg name="consoleService" ref="consoleService"/>
+	</bean>
+	
+	<bean id="consoleService" class="ru.otus.homework01.service.ConsoleServiceImpl">
+	</bean>
+	
+	<bean id="loginService" class="ru.otus.homework01.service.LoginServiceImpl">
+		<constructor-arg name="console" ref="consoleService"/>
+	</bean>
+	
 	<bean id="quizDao" class="ru.otus.homework01.dao.QuizDaoImpl">
 		<property name="fileName" value="/questions"/>
     </bean>
@@ -11,5 +24,9 @@
     <bean id="quizService" class="ru.otus.homework01.service.QuizServiceImpl">
         <constructor-arg name="dao" ref="quizDao"/>
     </bean>
+    
+    
+    
+    
 
 </beans>
