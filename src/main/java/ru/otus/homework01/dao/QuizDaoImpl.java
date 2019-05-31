@@ -14,16 +14,14 @@ import ru.otus.homework01.domain.Quiz;
 public class QuizDaoImpl implements QuizDao{
 	
 	private Quiz quiz;
-	private String csvFileName;
 	
-	public void setFileName(final String fileName) {
-		
-		this.csvFileName = fileName;
+	public QuizDaoImpl(final String fileName) {
+		loadData(fileName);
 	}
-	
-	public void loadData(){
+
+	private void loadData(final String fileName){
 		
-		List<String[]> csvLines = readCSV(this.csvFileName);
+		List<String[]> csvLines = readCSV(fileName);
 		this.quiz = new Quiz(csvLines);
 	}
 	

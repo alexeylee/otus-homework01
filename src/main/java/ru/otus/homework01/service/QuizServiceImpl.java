@@ -9,7 +9,6 @@ public class QuizServiceImpl implements QuizService{
 	
 	public QuizServiceImpl(QuizDao dao) {
 		this.dao = dao;
-		dao.loadData();
 	}
 	
 	public Quiz getQuiz() {

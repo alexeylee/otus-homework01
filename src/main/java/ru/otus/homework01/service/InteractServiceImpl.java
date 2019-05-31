@@ -132,7 +132,7 @@ public class InteractServiceImpl implements InteractService {
 	private void sayGoodBuy()
 	{
 		System.out.println("Всего хорошего!");
-		System.exit(0);
+		System.exit(1);
 	}
 
 }

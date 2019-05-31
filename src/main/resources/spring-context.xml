@@ -18,7 +18,7 @@
 	</bean>
 	
 	<bean id="quizDao" class="ru.otus.homework01.dao.QuizDaoImpl">
-		<property name="fileName" value="/questions"/>
+		<constructor-arg value="/questions"/>
     </bean>
 
     <bean id="quizService" class="ru.otus.homework01.service.QuizServiceImpl">

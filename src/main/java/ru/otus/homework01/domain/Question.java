@@ -1,6 +1,5 @@
 package ru.otus.homework01.domain;
 
-
 public class Question {
 	//TODO применить библиотеку Lombok
 	private String id;
