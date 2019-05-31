@@ -21,10 +21,34 @@ public class LoginServiceImpl implements LoginService{
 		String name = "";
 		String patronimic = "";
 		
-		name = console.getAnswer("Ваше имя: ");
-		patronimic = console.getAnswer("Ваше отчество: ");
+		name = getInput("Ваше имя: ");
+		patronimic = getInput("Ваше отчество: ");
 		
 		return new Person(name, patronimic);
+	}
+	
+	private String getInput(final String question) {
+		
+		String line;
+		
+		while (true) {
+			line = console.getAnswer(question);
+			
+			if (isAnswerValid(line))
+				break;
+		}
+		
+		return line;
+	}
+	
+	private boolean isAnswerValid(final String answer) {
+		
+		if (answer == null || answer.isEmpty()) {
+			System.out.println("Этот параметр обязателен!");
+			return false;
+		}
+		return true;
+			
 	}
 
 }

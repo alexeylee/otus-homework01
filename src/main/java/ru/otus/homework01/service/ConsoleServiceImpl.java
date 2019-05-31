@@ -6,7 +6,7 @@ public class ConsoleServiceImpl implements ConsoleService{
 	
 	private Scanner scanner = new Scanner(System.in);
 	
-	public String getAnswer(String question) {
+	public String getAnswer(final String question) {
 		
 		String answer;
 		System.out.print(question);

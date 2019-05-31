@@ -3,24 +3,24 @@ package ru.otus.homework01.domain;
 
 public class Question {
 	//TODO применить библиотеку Lombok
-	private int id;
+	private String id;
 	private String questionText;
-	private int correctAnswerId;
+	private String correctAnswerId;
 	
 	public Question(String id, String questionText, String correctAnswerId) {
-		this.id = Integer.valueOf(id.trim());
+		this.id = id.trim();
 		this.questionText = questionText;
-		this.correctAnswerId = Integer.valueOf(correctAnswerId.trim());
+		this.correctAnswerId = correctAnswerId.trim();
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	public String getQuestionText() {
 		return questionText;
 	}
 
-	public int getCorrectAnswerId() {
+	public String getCorrectAnswerId() {
 		return correctAnswerId;
 	}
 	

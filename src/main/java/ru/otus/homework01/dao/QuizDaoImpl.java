@@ -11,14 +11,12 @@ import com.opencsv.CSVReader;
 
 import ru.otus.homework01.domain.Quiz;
 
-/*Класс реализует загрузку данных.
- *В дальнейшем данные будут загружаться из БД*/
 public class QuizDaoImpl implements QuizDao{
 	
 	private Quiz quiz;
 	private String csvFileName;
 	
-	public void setFileName(String fileName) {
+	public void setFileName(final String fileName) {
 		
 		this.csvFileName = fileName;
 	}
@@ -50,7 +48,7 @@ public class QuizDaoImpl implements QuizDao{
 	}
 
 	public Quiz getQuize() {
-		return quiz;
+		return this.quiz;
 	}
 	
 	
