@@ -7,9 +7,14 @@ public class Main {
 
     public static void main(String[] args) {
     	
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
+    	try {
+    		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
+    		 InteractService runner = context.getBean(InteractService.class);
+    	     runner.run();
+    	}catch (Exception e) {
+    		System.err.print(e.getMessage());
+    	}
         
-        InteractService runner = context.getBean(InteractService.class);
-        runner.run();
+       
     }
 }

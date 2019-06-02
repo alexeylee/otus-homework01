@@ -9,25 +9,31 @@ import java.util.List;
 
 import com.opencsv.CSVReader;
 
+import ru.otus.homework01.ApplicationException;
 import ru.otus.homework01.domain.Quiz;
 
 public class QuizDaoImpl implements QuizDao{
 	
 	private Quiz quiz;
 	
-	public QuizDaoImpl(final String fileName) {
+	public QuizDaoImpl(final String fileName) throws ApplicationException {
 		loadData(fileName);
 	}
 
-	private void loadData(final String fileName){
+	private void loadData(final String fileName) throws ApplicationException{
 		
 		List<String[]> csvLines = readCSV(fileName);
 		this.quiz = new Quiz(csvLines);
 	}
 	
-	private List<String[]> readCSV(final String fileName){
+	private List<String[]> readCSV(final String fileName) throws ApplicationException{
 		
 		InputStream stream = Quiz.class.getResourceAsStream(fileName);
+		if (stream == null)
+			throw new ApplicationException(
+				"Возникла ошибка при загрузке файла CSV. Файл " + fileName + " не найден."
+			);
+		
 		Reader reader = new InputStreamReader(stream);
 		 
 		CSVReader csvReader = new CSVReader(reader);
@@ -38,8 +44,9 @@ public class QuizDaoImpl implements QuizDao{
 			reader.close();
 			csvReader.close();
 		} catch (IOException e) {
-			// TODO обработать исключение
-			e.printStackTrace();
+			throw new ApplicationException(
+				"Возникла ошибка при загрузке файла CSV. Текст ошибки: " + e.getMessage()
+			);
 		}
 		
 		return csvLines;
