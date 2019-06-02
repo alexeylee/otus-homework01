@@ -11,8 +11,11 @@
     
     <properties>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	<java.version>1.8</java.version>
     	<spring.version>5.1.7.RELEASE</spring.version>
     	<opencsv.version>4.6</opencsv.version>
+    	<junit.jupiter.version>5.4.2</junit.jupiter.version>
+        <junit.platform.version>1.4.2</junit.platform.version>
     </properties>
 
     <dependencies>
@@ -26,5 +29,30 @@
 		    <artifactId>opencsv</artifactId>
 		    <version>${opencsv.version}</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+    
+     <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
