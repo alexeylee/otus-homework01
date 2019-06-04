@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation=
+       	"http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd"
+>
 
 	<bean id="interactService" class="ru.otus.homework01.service.InteractServiceImpl">
 		<constructor-arg name="loginService" ref="loginService"/>
 		<constructor-arg name="quizDao" ref="quizDao"/>
 		<constructor-arg name="consoleService" ref="consoleService"/>
-	</bean>
-	
-	<bean id="consoleService" class="ru.otus.homework01.service.ConsoleServiceImpl">
 	</bean>
 	
 	<bean id="loginService" class="ru.otus.homework01.service.LoginServiceImpl">
@@ -20,4 +22,12 @@
 	<bean id="quizDao" class="ru.otus.homework01.dao.QuizDaoImpl">
 		<constructor-arg value="/questions.csv"/>
     </bean>
+    
+    <bean id="consoleService" class="ru.otus.homework01.service.ConsoleServiceImpl">
+    	<constructor-arg index="0" ref="in"/>
+        <constructor-arg index="1" ref="out"/>
+	</bean>
+	
+	<util:constant id="in" static-field="java.lang.System.in" />
+    <util:constant id="out" static-field="java.lang.System.out" />	
 </beans>

@@ -6,15 +6,16 @@ import ru.otus.homework01.domain.Question;
 import ru.otus.homework01.exceptions.IncorrectInputException;
 
 public class InteractServiceImpl implements InteractService {
-
+	
+	private static final String NEW_LINE = System.lineSeparator();
 	private LoginService loginService;
-	private ConsoleService consoleService;
+	private ConsoleService console;
 	private QuizDao quizDao;
 	
 	public InteractServiceImpl(LoginService loginService, QuizDao quizDao, ConsoleService consoleService) {
 		this.loginService = loginService;
 		this.quizDao = quizDao;
-		this.consoleService = consoleService;
+		this.console = consoleService;
 	}
 	
 	public void run() {
@@ -23,7 +24,6 @@ public class InteractServiceImpl implements InteractService {
 		greeting(person);
 		int score = processTesting();
 		processResult(person, score);
-		consoleService.close();
 		sayGoodBuy();
 	}
 	
@@ -40,7 +40,7 @@ public class InteractServiceImpl implements InteractService {
 		
 		String line;
 		while (true) {
-			line = consoleService.getAnswer(question.getQuestionText() + ":  ");	
+			line = console.getAnswer(NEW_LINE + question.getQuestionText() + ":  ");	
 			if (isAnswerValid(line))
 				break;
 		}
@@ -54,18 +54,18 @@ public class InteractServiceImpl implements InteractService {
 			sayGoodBuy();
 		
 		if (answer.equals(question.getCorrectAnswerId())) {
-			System.out.println("Правильно!");
+			console.print("Правильно!");
 			return 1;
 		}
 		else {
-			System.out.println("Это неправильный ответ! Продолжаем ...");
+			console.print("Это неправильный ответ! Продолжаем ...");
 			return 0;
 		}
 	}
 
 	private void processResult(final Person person, final int score) {
-		System.out.println(
-			person.toString() + ", Вы набрали " + score + " баллов из " + quizDao.getQuiz().getQuestions().size() + "."
+		console.print(
+			NEW_LINE + person.toString() + ", Вы набрали " + score + " баллов из " + quizDao.getQuiz().getQuestions().size() + "."
 		);
 	}
 	
@@ -74,7 +74,7 @@ public class InteractServiceImpl implements InteractService {
 		try {
 			validateAnswer(answer);
 		} catch (IncorrectInputException e) {
-			System.out.println("Такого варианта ответа нет. Для ответа введите число от 1 до 3.");
+			console.print("Такого варианта ответа нет. Для ответа введите число от 1 до 3.");
 			return false;
 		}
 		return true;
@@ -94,12 +94,12 @@ public class InteractServiceImpl implements InteractService {
 	}
 	
 	private void greeting(final Person person){
-		System.out.println("Здравствуйте, " + person.toString() + "!");
-		System.out.println("Ответьте, пожалуйста, на несколько вопросов. Для ответа вводите число от 1 до 3. Для выхода нажмите 0.");
+		console.print("Здравствуйте, " + person.toString() + "!");
+		console.print(NEW_LINE + "Ответьте, пожалуйста, на несколько вопросов. Для ответа вводите число от 1 до 3. Для выхода нажмите 0.");
 	}
 	
 	private void sayGoodBuy(){
-		System.out.println("Всего хорошего!");
+		console.print(NEW_LINE + "Всего хорошего!");
 		System.exit(1);
 	}
 }

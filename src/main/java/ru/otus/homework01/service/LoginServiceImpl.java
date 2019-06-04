@@ -40,7 +40,7 @@ public class LoginServiceImpl implements LoginService{
 	private boolean isAnswerValid(final String answer) {
 		
 		if (answer == null || answer.isEmpty()) {
-			System.out.println("Этот параметр обязателен!");
+			console.print("Этот параметр обязателен!");
 			return false;
 		}
 		return true;	
