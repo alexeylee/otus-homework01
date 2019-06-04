@@ -52,7 +52,7 @@ public class QuizDaoImpl implements QuizDao{
 		return csvLines;
 	}
 
-	public Quiz getQuize() {
+	public Quiz getQuiz() {
 		return this.quiz;
 	}
 	

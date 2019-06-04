@@ -1,5 +1,6 @@
 package ru.otus.homework01.service;
 
+import ru.otus.homework01.dao.QuizDao;
 import ru.otus.homework01.domain.Person;
 import ru.otus.homework01.domain.Question;
 import ru.otus.homework01.exceptions.IncorrectInputException;
@@ -8,11 +9,11 @@ public class InteractServiceImpl implements InteractService {
 
 	private LoginService loginService;
 	private ConsoleService consoleService;
-	private QuizService quizeService;
+	private QuizDao quizDao;
 	
-	public InteractServiceImpl(LoginService loginService, QuizService quizeService, ConsoleService consoleService) {
+	public InteractServiceImpl(LoginService loginService, QuizDao quizDao, ConsoleService consoleService) {
 		this.loginService = loginService;
-		this.quizeService = quizeService;
+		this.quizDao = quizDao;
 		this.consoleService = consoleService;
 	}
 	
@@ -29,7 +30,7 @@ public class InteractServiceImpl implements InteractService {
 	private int processTesting() {
 		
 		int score = 0;
-		for (Question question : quizeService.getQuiz().getQuestions()) 
+		for (Question question : quizDao.getQuiz().getQuestions()) 
 			score += scoreAnswer(question, getAnswer(question));
 		
 		return score;
@@ -64,7 +65,7 @@ public class InteractServiceImpl implements InteractService {
 
 	private void processResult(final Person person, final int score) {
 		System.out.println(
-			person.toString() + ", Вы набрали " + score + " баллов из " + quizeService.getQuiz().getQuestions().size() + "."
+			person.toString() + ", Вы набрали " + score + " баллов из " + quizDao.getQuiz().getQuestions().size() + "."
 		);
 	}
 	

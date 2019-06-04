@@ -6,7 +6,7 @@
 
 	<bean id="interactService" class="ru.otus.homework01.service.InteractServiceImpl">
 		<constructor-arg name="loginService" ref="loginService"/>
-		<constructor-arg name="quizeService" ref="quizService"/>
+		<constructor-arg name="quizDao" ref="quizDao"/>
 		<constructor-arg name="consoleService" ref="consoleService"/>
 	</bean>
 	
@@ -20,13 +20,4 @@
 	<bean id="quizDao" class="ru.otus.homework01.dao.QuizDaoImpl">
 		<constructor-arg value="/questions.csv"/>
     </bean>
-
-    <bean id="quizService" class="ru.otus.homework01.service.QuizServiceImpl">
-        <constructor-arg name="dao" ref="quizDao"/>
-    </bean>
-    
-    
-    
-    
-
 </beans>
