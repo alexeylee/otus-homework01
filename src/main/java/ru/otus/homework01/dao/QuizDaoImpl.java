@@ -9,8 +9,8 @@ import java.util.List;
 
 import com.opencsv.CSVReader;
 
-import ru.otus.homework01.ApplicationException;
 import ru.otus.homework01.domain.Quiz;
+import ru.otus.homework01.exceptions.ApplicationException;
 
 public class QuizDaoImpl implements QuizDao{
 	
@@ -52,7 +52,7 @@ public class QuizDaoImpl implements QuizDao{
 		return csvLines;
 	}
 
-	public Quiz getQuize() {
+	public Quiz getQuiz() {
 		return this.quiz;
 	}
 	

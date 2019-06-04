@@ -1,31 +1,25 @@
 package ru.otus.homework01.domain;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Quiz {
-	private HashMap<String, Question> questionMap;
+	private ArrayList<Question> listOfQuestions;
 	
 	public Quiz(final List<String[]> csvLines) {
-		
-		buildQustionMap(csvLines);
+		createListOfQuestions(csvLines);
 	}
 	
-	public HashMap<String, Question> getQuestions() {
-		
-		return this.questionMap;
+	public ArrayList<Question> getQuestions() {
+		return this.listOfQuestions;
 	}
 	
-	private void buildQustionMap(final List<String[]> csvLines) {
+	private void createListOfQuestions(final List<String[]> csvLines) {
 		
-		this.questionMap = new HashMap<String, Question>();
+		this.listOfQuestions = new ArrayList<>();
 		for (String[] line : csvLines)
-			 this.questionMap.put(
-				line[0], 
-				new Question(line[0], line[1], line[2])
+			this.listOfQuestions.add(
+				new Question(line[0].trim(), line[1], line[2].trim())
 			);
 	}
-	
-
-
 }

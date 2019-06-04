@@ -7,12 +7,10 @@ public class LoginServiceImpl implements LoginService{
 	private ConsoleService console;
 	
 	public LoginServiceImpl (ConsoleService console) {
-		
 		this.console = console;
 	}
 	
-	public Person getPerson() {
-		
+	public Person getPerson() {	
 		return loginUser();
 	}
 	
@@ -30,25 +28,21 @@ public class LoginServiceImpl implements LoginService{
 	private String getInput(final String question) {
 		
 		String line;
-		
 		while (true) {
 			line = console.getAnswer(question);
 			
 			if (isAnswerValid(line))
 				break;
 		}
-		
 		return line;
 	}
 	
 	private boolean isAnswerValid(final String answer) {
 		
 		if (answer == null || answer.isEmpty()) {
-			System.out.println("Этот параметр обязателен!");
+			console.print("Этот параметр обязателен!");
 			return false;
 		}
-		return true;
-			
+		return true;	
 	}
-
 }
