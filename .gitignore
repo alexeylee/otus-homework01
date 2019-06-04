@@ -4,6 +4,7 @@
 .classpath
 .gitignore
 .project
+.factorypath
 
 # Intellij
 .idea/
@@ -17,4 +18,5 @@
 log/
 target/
 /bin
+
 

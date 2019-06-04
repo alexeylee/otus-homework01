@@ -20,7 +20,7 @@ public class Quiz {
 		for (String[] line : csvLines)
 			 this.questionMap.put(
 				line[0], 
-				new Question(line[0], line[1], line[2])
+				new Question(line[0].trim(), line[1], line[2].trim())
 			);
 	}
 }
