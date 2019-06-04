@@ -9,12 +9,10 @@ public class Main {
     	
     	try {
     		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
-    		 InteractService runner = context.getBean(InteractService.class);
-    	     runner.run();
+    		InteractService runner = context.getBean(InteractService.class);
+    	    runner.run();
     	}catch (Exception e) {
     		System.err.print(e.getMessage());
     	}
-        
-       
     }
 }

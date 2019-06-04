@@ -7,12 +7,10 @@ public class Quiz {
 	private HashMap<String, Question> questionMap;
 	
 	public Quiz(final List<String[]> csvLines) {
-		
 		buildQustionMap(csvLines);
 	}
 	
 	public HashMap<String, Question> getQuestions() {
-		
 		return this.questionMap;
 	}
 	
@@ -25,7 +23,4 @@ public class Quiz {
 				new Question(line[0], line[1], line[2])
 			);
 	}
-	
-
-
 }

@@ -12,12 +12,10 @@ public class ConsoleServiceImpl implements ConsoleService{
 		String answer;
 		System.out.print(question);
 		answer = scanner.nextLine();
-
 		return answer;
 	}
 
 	public void close() {
-
 		this.scanner.close();
 	}
 }

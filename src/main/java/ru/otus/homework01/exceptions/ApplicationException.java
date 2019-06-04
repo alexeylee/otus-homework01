@@ -1,4 +1,4 @@
-package ru.otus.homework01;
+package ru.otus.homework01.exceptions;
 
 public class ApplicationException extends Exception{
 	
@@ -6,6 +6,5 @@ public class ApplicationException extends Exception{
 		super();
 		this.description = description;
 	}
-	
 	String description;
 }

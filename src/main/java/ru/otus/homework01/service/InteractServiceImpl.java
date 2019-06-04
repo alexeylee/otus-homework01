@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import ru.otus.homework01.IncorrectInputException;
 import ru.otus.homework01.domain.Person;
 import ru.otus.homework01.domain.Question;
+import ru.otus.homework01.exceptions.IncorrectInputException;
 
 public class InteractServiceImpl implements InteractService {
 
@@ -34,35 +34,29 @@ public class InteractServiceImpl implements InteractService {
 		
 		int score = 0;
 		Question question;
-		
 		Iterator<?> listOfQuestions = getQuestions();
 		while(listOfQuestions.hasNext()) {
 
 			question = getQuestion(listOfQuestions.next());
 			score += scoreAnswer(question, getAnswer(question));
 		}
-		
 		return score;
 	}
 	
 	private String getAnswer(final Question question) {
 		
 		String line;
-		
 		while (true) {
-			line = consoleService.getAnswer(question.getQuestionText() + ":  ");
-			
+			line = consoleService.getAnswer(question.getQuestionText() + ":  ");	
 			if (isAnswerValid(line))
 				break;
 		}
-		
 		return line;
 	}
 
 	private int scoreAnswer(final Question question, String answer) {
 		
 		answer = answer.trim();
-		
 		if (answer.equals("0"))
 			sayGoodBuy();
 		
@@ -75,11 +69,8 @@ public class InteractServiceImpl implements InteractService {
 			return 0;
 		}
 	}
-	
-	
-	
+
 	private void processResult(final Person person, final int score) {
-		
 		System.out.println(
 			person.toString() + ", Вы набрали " + score + " баллов из " + quizeService.getQuiz().getQuestions().size() + "."
 		);
@@ -109,8 +100,8 @@ public class InteractServiceImpl implements InteractService {
 	}
 	
 	private void validateAnswer(final String answer) throws IncorrectInputException {
-		int variant;
 		
+		int variant;
 		try {
 			variant = Integer.parseInt(answer);
 		}catch (NumberFormatException e) {
@@ -119,20 +110,15 @@ public class InteractServiceImpl implements InteractService {
 		
 		if (variant < 0 || variant >3)
 			throw new IncorrectInputException();
-			
 	}
 	
-	private void greeting(final Person person)
-	{
-		
+	private void greeting(final Person person){
 		System.out.println("Здравствуйте, " + person.toString() + "!");
 		System.out.println("Ответьте, пожалуйста, на несколько вопросов. Для ответа вводите число от 1 до 3. Для выхода нажмите 0.");
 	}
 	
-	private void sayGoodBuy()
-	{
+	private void sayGoodBuy(){
 		System.out.println("Всего хорошего!");
 		System.exit(1);
 	}
-
 }
