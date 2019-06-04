@@ -1,9 +1,5 @@
 package ru.otus.homework01.service;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import ru.otus.homework01.domain.Person;
 import ru.otus.homework01.domain.Question;
 import ru.otus.homework01.exceptions.IncorrectInputException;
@@ -33,13 +29,9 @@ public class InteractServiceImpl implements InteractService {
 	private int processTesting() {
 		
 		int score = 0;
-		Question question;
-		Iterator<?> listOfQuestions = getQuestions();
-		while(listOfQuestions.hasNext()) {
-
-			question = getQuestion(listOfQuestions.next());
+		for (Question question : quizeService.getQuiz().getQuestions()) 
 			score += scoreAnswer(question, getAnswer(question));
-		}
+		
 		return score;
 	}
 	
@@ -74,18 +66,6 @@ public class InteractServiceImpl implements InteractService {
 		System.out.println(
 			person.toString() + ", Вы набрали " + score + " баллов из " + quizeService.getQuiz().getQuestions().size() + "."
 		);
-	}
-	
-	//TODO проверить, что список вопросов загрузился
-	private Iterator<?> getQuestions() {
-		HashMap<String, Question> questions = quizeService.getQuiz().getQuestions();
-		return questions.entrySet().iterator();
-	}
-	
-	private Question getQuestion(Object next) {
-		
-		Map.Entry entry = (Map.Entry)next;
-		return  (Question)entry.getValue();
 	}
 	
 	private boolean isAnswerValid(final String answer) {
